@@ -50,16 +50,13 @@ docs:
 
 # needs the notebook extras (make install)
 notebook:
-	$(PY) -c "import nbformat; from nbclient import NotebookClient; \
-	nb = nbformat.read('docs/examples.ipynb', as_version=4); \
-	NotebookClient(nb, timeout=600, kernel_name='python3', resources={'metadata': {'path': 'docs'}}).execute(); \
-	nbformat.write(nb, 'docs/examples.ipynb')"
+	$(PY) scripts/run_notebook.py docs/examples.ipynb
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
 
 lint:
-	ruff check src tests
+	ruff check src tests scripts
 
 clean:
 	rm -f data/armstat_trade.duckdb data/*.building.duckdb
