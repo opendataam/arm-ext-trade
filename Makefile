@@ -1,7 +1,7 @@
 PY ?= python3
 RUN = PYTHONPATH=src $(PY) -m armstat_trade
 
-.PHONY: help install all catalog fetch-files fetch-db tnved build docs test lint clean
+.PHONY: help install all catalog fetch-files fetch-db tnved build docs notebook test lint clean
 
 help:
 	@echo "make install      install the package and dev dependencies (editable)"
@@ -12,6 +12,7 @@ help:
 	@echo "make tnved        extract Russian chapter/section names from the TN VED 2017 document"
 	@echo "make build        (re)build data/armstat_trade.duckdb"
 	@echo "make docs         regenerate docs/data_dictionary.md from the database"
+	@echo "make notebook     execute docs/examples.ipynb against the database and save outputs"
 	@echo "make test         run tests"
 
 install:
@@ -36,6 +37,13 @@ build:
 
 docs:
 	$(RUN) docs
+
+# needs: pip install -e '.[notebook]'
+notebook:
+	$(PY) -c "import nbformat; from nbclient import NotebookClient; \
+	nb = nbformat.read('docs/examples.ipynb', as_version=4); \
+	NotebookClient(nb, timeout=600, kernel_name='python3', resources={'metadata': {'path': 'docs'}}).execute(); \
+	nbformat.write(nb, 'docs/examples.ipynb')"
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q

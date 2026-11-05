@@ -5,6 +5,7 @@ __pycache__/
 .venv/
 .pytest_cache/
 .ruff_cache/
+.ipynb_checkpoints/
 
 # Bulky data: reproducible with `make all` (catalogs in data/catalog are versioned)
 data/raw/

@@ -93,6 +93,7 @@ duckdb data/armstat_trade.duckdb -c "
 | [docs/data_dictionary.md](docs/data_dictionary.md) | все таблицы и колонки (генерируется) |
 | [docs/inventory.md](docs/inventory.md) | перечень файлов и запросов (генерируется) |
 | [docs/data_quality.md](docs/data_quality.md) | проверки качества и найденные проблемы источников |
+| [docs/examples.ipynb](docs/examples.ipynb) | тетрадка Jupyter: примеры запросов, сравнений источников и визуализаций (`pip install -e '.[notebook]'`, `make notebook`) |
 | [docs/maintenance.md](docs/maintenance.md) | сопровождение: обновление, новые годы, изменения на сайте |
 
 ## Основные таблицы
