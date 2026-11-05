@@ -15,7 +15,43 @@
 нормализованными таблицами фактов, полной копией исходных ячеек и выгрузок, проверками качества
 и документацией.
 
-## Быстрый старт
+## Готовые данные: релизы
+
+База и исходные данные в git не хранятся (база больше лимита GitHub в 100 МБ, а история росла бы
+с каждой пересборкой). Каждый сбор публикуется как **релиз** репозитория
+([Releases](https://github.com/opendataam/arm-ext-trade/releases)) с тегом `data-ГГГГ-ММ-ДД` — дата
+сбора; тег указывает на коммит кода, которым собрана база.
+
+| файл релиза | содержание | размер* |
+|---|---|---|
+| `armstat_trade.duckdb.xz` | база DuckDB | ~25 МБ (124 МБ распакованная) |
+| `armstat_trade-parquet.zip` | все таблицы и представления в Parquet + словарь данных | ~40 МБ |
+| `armstat_trade-raw.tar.xz` | исходные данные: страницы сайта, xlsx/7z, выгрузки веб-базы (`raw/`) и манифесты (`catalog/`) | ~46 МБ |
+| `SHA256SUMS` | контрольные суммы | |
+
+\* для снимка 2026-11-05.
+
+```bash
+make install
+make download            # последний релиз: база -> data/armstat_trade.duckdb (с проверкой SHA256)
+make lab                 # тетрадка с примерами
+```
+
+Другие варианты: `make download-parquet` (Parquet → `data/parquet/`), `make download-raw` (исходные
+данные → `data/raw/`, затем `make build` — пересборка без обращения к сайту), конкретный снимок —
+`make download TAG=data-2026-11-05`. Без Python:
+`curl -LO https://github.com/opendataam/arm-ext-trade/releases/latest/download/armstat_trade.duckdb.xz && xz -d armstat_trade.duckdb.xz`.
+
+Для точной пересборки снимка переключитесь на его тег (`git checkout data-2026-11-05`): манифесты
+`data/catalog/` в git должны соответствовать исходным данным снимка (или используйте
+`python -m armstat_trade download --part raw --with-catalog`).
+
+Публикация нового снимка (сопровождающим): собрать данные (`make all`), закоммитить и отправить
+изменения манифестов, затем `make release` — архивы и `RELEASE_NOTES.md` создаются в
+`data/release/<тег>/` и загружаются через `gh release create` (нужны `gh` и права на запись;
+`make release-pack` — только упаковать).
+
+## Быстрый старт: собрать всё самостоятельно
 
 ```bash
 make install   # создаёт .venv и ставит пакет с extras dev + notebook (через uv, если он есть; Python ≥ 3.10)
@@ -118,6 +154,7 @@ duckdb data/armstat_trade.duckdb -c "
 │   ├── fetch_db.py            шаг 3: выгрузка веб-БД (запрос → /excelopen.php → проверка)
 │   ├── build.py               шаг 4: разбор и сборка DuckDB
 │   ├── docs.py                генерация словаря данных и перечня источников
+│   ├── release.py             снимки данных в GitHub Releases: упаковка, публикация, загрузка
 │   ├── reference.py           статические справочники и словари соответствий
 │   ├── cli.py, __main__.py    командная строка
 │   └── parsers/
@@ -136,8 +173,9 @@ duckdb data/armstat_trade.duckdb -c "
 ├── data/
 │   ├── catalog/               манифесты (в git): pages.json, files.json, db_queries.json, db_options/
 │   ├── interim/               tnved_2017.csv (в git)
-│   ├── raw/                   скачанные страницы, файлы, выгрузки (не в git, воспроизводимо)
-│   └── armstat_trade.duckdb   результат (не в git)
+│   ├── raw/                   скачанные страницы, файлы, выгрузки (не в git; в релизах)
+│   ├── release/               упакованные и скачанные снимки (не в git)
+│   └── armstat_trade.duckdb   результат (не в git; в релизах)
 ├── docs/                      документация и тетрадка examples.ipynb
 ├── scripts/
 │   ├── run_notebook.py        выполнение тетрадки с сохранением результатов (make notebook)

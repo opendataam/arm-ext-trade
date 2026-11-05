@@ -34,12 +34,30 @@ def main(argv: list[str] | None = None) -> int:
     a = sub.add_parser("all", help="catalog + fetch-files + fetch-db + tnved + build + docs")
     a.add_argument("--refresh-last", type=int, default=2)
 
+    r = sub.add_parser("release", help="pack the data snapshot and publish it as a GitHub release (needs gh)")
+    r.add_argument("--tag", help="release tag (default data-<collection date>)")
+    r.add_argument("--pack-only", action="store_true", help="only create the assets in data/release/<tag>")
+
+    dl = sub.add_parser("download", help="download a data snapshot from GitHub releases into data/")
+    dl.add_argument("--tag", default="latest", help="release tag (default: latest)")
+    dl.add_argument("--part", action="append", choices=["db", "parquet", "raw"], help="what to download (default: db)")
+    dl.add_argument("--with-catalog", action="store_true", help="with raw: also overwrite data/catalog from the snapshot")
+
     args = p.parse_args(argv)
     logging.basicConfig(
         level=logging.DEBUG if args.verbose else logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
         stream=sys.stderr,
     )
+
+    if args.cmd in ("release", "download"):
+        from . import release
+
+        if args.cmd == "release":
+            release.pack(args.tag) if args.pack_only else release.publish(args.tag)
+        else:
+            release.download(args.tag, tuple(args.part or ["db"]), args.with_catalog)
+        return 0
 
     from . import catalog, fetch_db, fetch_files
 

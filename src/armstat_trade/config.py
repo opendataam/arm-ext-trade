@@ -14,6 +14,10 @@ DB_RAW_DIR = RAW_DIR / "db"            # Excel exports of the web database queri
 CATALOG_DIR = DATA_DIR / "catalog"     # small JSON manifests (committed to git)
 SQL_DIR = ROOT / "sql"
 DUCKDB_PATH = DATA_DIR / "armstat_trade.duckdb"
+RELEASE_DIR = DATA_DIR / "release"     # packed data snapshots (not in git)
+
+# GitHub repository whose releases carry the data snapshots (override: env ARMSTAT_TRADE_REPO)
+GITHUB_REPO = "opendataam/arm-ext-trade"
 
 BASE_URL = "https://armstat.am"
 

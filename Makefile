@@ -5,7 +5,7 @@ PY ?= $(if $(wildcard $(VENV)/bin/python),$(VENV)/bin/python,python3)
 UV := $(shell command -v uv 2>/dev/null)
 RUN = PYTHONPATH=src $(PY) -m armstat_trade
 
-.PHONY: help install all catalog fetch-files fetch-db tnved build docs notebook lab test lint clean
+.PHONY: help install all catalog fetch-files fetch-db tnved build docs notebook lab release-pack release download download-raw download-parquet test lint clean
 
 help:
 	@echo "make install      create $(VENV) and install the package with dev + notebook extras (editable)"
@@ -18,6 +18,11 @@ help:
 	@echo "make docs         regenerate docs/data_dictionary.md from the database"
 	@echo "make notebook     execute docs/examples.ipynb against the database and save outputs"
 	@echo "make lab          open docs/examples.ipynb in Jupyter Lab (interactive)"
+	@echo "make download     get the latest data snapshot (database) from GitHub releases"
+	@echo "make download-raw get the raw data of the latest snapshot (then: make build)"
+	@echo "make download-parquet  get every table as Parquet -> data/parquet"
+	@echo "make release-pack pack the snapshot into data/release/<tag> (no upload)"
+	@echo "make release      pack and publish the snapshot as a GitHub release (needs gh, clean pushed HEAD)"
 	@echo "make test         run tests"
 
 install:
@@ -57,6 +62,24 @@ notebook:
 lab:
 	$(VENV)/bin/jupyter trust docs/examples.ipynb
 	$(VENV)/bin/jupyter lab --config scripts/jupyter_lab_config.py docs/examples.ipynb
+
+# data snapshots in GitHub releases (src/armstat_trade/release.py); TAG=data-YYYY-MM-DD to pick one
+TAG ?= latest
+
+download:
+	$(RUN) download --tag $(TAG) --part db
+
+download-raw:
+	$(RUN) download --tag $(TAG) --part raw
+
+download-parquet:
+	$(RUN) download --tag $(TAG) --part parquet
+
+release-pack:
+	$(RUN) release --pack-only
+
+release:
+	$(RUN) release
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q

@@ -2,8 +2,19 @@
 
 ## Регулярное обновление
 
+На новой машине сначала восстановите исходные данные последнего снимка, чтобы не скачивать всё заново
+(`fetch-db` докачает только недостающее и два последних года):
+
 ```bash
-make catalog fetch-files fetch-db build docs test
+make install download-raw
+```
+
+Затем:
+
+```bash
+make catalog fetch-files fetch-db build docs notebook test
+git add -A && git commit -m "data: update to $(date +%F)" && git push
+make release            # новый релиз data-<дата сбора> с базой, Parquet и исходными данными
 ```
 
 * `catalog` заново обходит страницы на трёх языках. Новые файлы и новые годы в формах веб-БД
@@ -16,6 +27,10 @@ make catalog fetch-files fetch-db build docs test
 * `build` пересоздаёт БД целиком (около 5 минут).
 * После сборки проверьте `SELECT * FROM qc_summary` (см. [data_quality.md](data_quality.md))
   и запустите `make test`.
+* `release` требует чистого рабочего дерева и отправленного `HEAD` (тег релиза ставится на этот коммит),
+  а также `gh` с правами на запись в `opendataam/arm-ext-trade`. Тег по умолчанию — `data-<дата последнего
+  запроса к веб-базе>`; если такой релиз уже есть, задайте другой: `python -m armstat_trade release --tag ...`.
+  Описание релиза (охват, проверки качества) формируется автоматически (`RELEASE_NOTES.md`).
 
 Рекомендуемая периодичность — ежемесячно (месячные данные публикуются с лагом ~1–2 мес.;
 годовые файлы по ТН ВЭД появляются в течение следующего года).
