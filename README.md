@@ -69,8 +69,19 @@ duckdb data/armstat_trade.duckdb -c "
    ```
 
    Откроется браузер с тетрадкой (`http://localhost:8888/lab/tree/docs/examples.ipynb`), в панели
-   файлов — весь репозиторий. То же без `make`:
-   `source .venv/bin/activate && jupyter lab --ServerApp.root_dir=. docs/examples.ipynb`.
+   файлов — весь репозиторий. Настройки сервера — в [`scripts/jupyter_lab_config.py`](scripts/jupyter_lab_config.py):
+   своё рабочее пространство JupyterLab в `.jupyter/` (вкладки других проектов не восстанавливаются),
+   ядро через unix-сокеты вместо TCP. То же без `make`:
+
+   ```bash
+   source .venv/bin/activate
+   jupyter trust docs/examples.ipynb
+   jupyter lab --config scripts/jupyter_lab_config.py docs/examples.ipynb
+   ```
+
+   `jupyter trust` помечает тетрадку доверенной для вашего пользователя: результаты в ней получены
+   не в вашем браузере, и без этого JupyterLab пишет `Notebook ... is not trusted` и не показывает
+   HTML/JS-результаты (графики PNG и таблицы видны в любом случае).
 
 4. Проверьте ядро в правом верхнем углу: **Python 3 (ipykernel)** — это ядро из `.venv`
    (`.venv/bin/jupyter kernelspec list` покажет путь внутри `.venv`).
@@ -128,7 +139,9 @@ duckdb data/armstat_trade.duckdb -c "
 │   ├── raw/                   скачанные страницы, файлы, выгрузки (не в git, воспроизводимо)
 │   └── armstat_trade.duckdb   результат (не в git)
 ├── docs/                      документация и тетрадка examples.ipynb
-├── scripts/run_notebook.py    выполнение тетрадки с сохранением результатов (make notebook)
+├── scripts/
+│   ├── run_notebook.py        выполнение тетрадки с сохранением результатов (make notebook)
+│   └── jupyter_lab_config.py  настройки JupyterLab для make lab
 └── tests/                     тесты парсеров и собранной БД
 ```
 

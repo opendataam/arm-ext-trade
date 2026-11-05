@@ -53,9 +53,10 @@ docs:
 notebook:
 	$(PY) scripts/run_notebook.py docs/examples.ipynb
 
-# interactive: opens the browser on the notebook, the file browser shows the whole repository; stop with Ctrl+C
+# interactive: opens the browser on the notebook; settings in scripts/jupyter_lab_config.py; stop with Ctrl+C
 lab:
-	$(VENV)/bin/jupyter lab --ServerApp.root_dir=. docs/examples.ipynb
+	$(VENV)/bin/jupyter trust docs/examples.ipynb
+	$(VENV)/bin/jupyter lab --config scripts/jupyter_lab_config.py docs/examples.ipynb
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q
