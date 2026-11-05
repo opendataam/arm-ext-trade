@@ -48,6 +48,51 @@ duckdb data/armstat_trade.duckdb -c "
   FROM v_db_country_annual GROUP BY year ORDER BY year"
 ```
 
+## Тетрадка Jupyter с примерами
+
+[`docs/examples.ipynb`](docs/examples.ipynb) — примеры запросов, сравнений источников и графиков. Она хранится
+с результатами выполнения, поэтому её можно просто открыть на GitHub. Чтобы работать с ней интерактивно:
+
+1. Установите окружение (создаёт `.venv` с JupyterLab, matplotlib и ядром Python):
+
+   ```bash
+   make install
+   ```
+
+2. Убедитесь, что база собрана: файл `data/armstat_trade.duckdb` должен существовать
+   (в первый раз — `make all`, при уже скачанных данных — `make build`).
+
+3. Запустите JupyterLab с тетрадкой:
+
+   ```bash
+   make lab
+   ```
+
+   Откроется браузер с тетрадкой (`http://localhost:8888/lab/tree/docs/examples.ipynb`), в панели
+   файлов — весь репозиторий. То же без `make`:
+   `source .venv/bin/activate && jupyter lab --ServerApp.root_dir=. docs/examples.ipynb`.
+
+4. Проверьте ядро в правом верхнем углу: **Python 3 (ipykernel)** — это ядро из `.venv`
+   (`.venv/bin/jupyter kernelspec list` покажет путь внутри `.venv`).
+
+5. Выполните ячейки: **Run → Run All Cells** или по одной — `Shift+Enter`. Первая ячейка находит корень
+   репозитория (по `pyproject.toml`) и открывает базу только для чтения, так что Jupyter можно запускать
+   из любой папки репозитория.
+
+6. Остановка — `Ctrl+C` в терминале, где запущен `make lab`, и подтверждение `y`.
+
+**VS Code:** откройте `docs/examples.ipynb`, нажмите **Select Kernel → Python Environments** и выберите
+`.venv/bin/python` (нужно расширение Jupyter).
+
+Полезно знать:
+
+* Если база открыта **на запись** другим процессом (например, `duckdb data/armstat_trade.duckdb`
+  без `-readonly`), тетрадка не сможет к ней подключиться — закройте этот процесс.
+* После пересборки базы (`make build`) перезапустите ядро (**Kernel → Restart Kernel**): открытое
+  подключение продолжает видеть прежний файл.
+* Перед коммитом обновите сохранённые результаты одним чистым прогоном всех ячеек по порядку:
+  `make notebook` (без браузера; выполняет тетрадку и записывает результаты в файл).
+
 ## Структура репозитория
 
 ```
@@ -82,7 +127,8 @@ duckdb data/armstat_trade.duckdb -c "
 │   ├── interim/               tnved_2017.csv (в git)
 │   ├── raw/                   скачанные страницы, файлы, выгрузки (не в git, воспроизводимо)
 │   └── armstat_trade.duckdb   результат (не в git)
-├── docs/                      документация
+├── docs/                      документация и тетрадка examples.ipynb
+├── scripts/run_notebook.py    выполнение тетрадки с сохранением результатов (make notebook)
 └── tests/                     тесты парсеров и собранной БД
 ```
 
@@ -96,7 +142,7 @@ duckdb data/armstat_trade.duckdb -c "
 | [docs/data_dictionary.md](docs/data_dictionary.md) | все таблицы и колонки (генерируется) |
 | [docs/inventory.md](docs/inventory.md) | перечень файлов и запросов (генерируется) |
 | [docs/data_quality.md](docs/data_quality.md) | проверки качества и найденные проблемы источников |
-| [docs/examples.ipynb](docs/examples.ipynb) | тетрадка Jupyter: примеры запросов, сравнений источников и визуализаций (`make install`, затем `make notebook` или `.venv/bin/jupyter lab docs/examples.ipynb`) |
+| [docs/examples.ipynb](docs/examples.ipynb) | тетрадка Jupyter: примеры запросов, сравнений источников и визуализаций (интерактивно — `make lab`, см. раздел выше) |
 | [docs/maintenance.md](docs/maintenance.md) | сопровождение: обновление, новые годы, изменения на сайте |
 
 ## Основные таблицы

@@ -5,7 +5,7 @@ PY ?= $(if $(wildcard $(VENV)/bin/python),$(VENV)/bin/python,python3)
 UV := $(shell command -v uv 2>/dev/null)
 RUN = PYTHONPATH=src $(PY) -m armstat_trade
 
-.PHONY: help install all catalog fetch-files fetch-db tnved build docs notebook test lint clean
+.PHONY: help install all catalog fetch-files fetch-db tnved build docs notebook lab test lint clean
 
 help:
 	@echo "make install      create $(VENV) and install the package with dev + notebook extras (editable)"
@@ -17,6 +17,7 @@ help:
 	@echo "make build        (re)build data/armstat_trade.duckdb"
 	@echo "make docs         regenerate docs/data_dictionary.md from the database"
 	@echo "make notebook     execute docs/examples.ipynb against the database and save outputs"
+	@echo "make lab          open docs/examples.ipynb in Jupyter Lab (interactive)"
 	@echo "make test         run tests"
 
 install:
@@ -51,6 +52,10 @@ docs:
 # needs the notebook extras (make install)
 notebook:
 	$(PY) scripts/run_notebook.py docs/examples.ipynb
+
+# interactive: opens the browser on the notebook, the file browser shows the whole repository; stop with Ctrl+C
+lab:
+	$(VENV)/bin/jupyter lab --ServerApp.root_dir=. docs/examples.ipynb
 
 test:
 	PYTHONPATH=src $(PY) -m pytest -q

@@ -25,8 +25,11 @@ def run(path: Path) -> None:
         config.KernelManager.transport = "ipc"
         config.KernelManager.ip = str(Path(tempfile.mkdtemp(prefix="nbkernel-")) / "kernel")
     started = time.monotonic()
-    NotebookClient(nb, config=config, timeout=600, kernel_name="python3",
+    # record_timing=False: no per-cell timestamps, so a re-run without data changes gives no git diff
+    NotebookClient(nb, config=config, timeout=600, kernel_name="python3", record_timing=False,
                    resources={"metadata": {"path": str(path.parent)}}).execute()
+    for cell in nb.cells:  # drop timestamps left by earlier runs
+        cell.metadata.pop("execution", None)
     nbformat.write(nb, path)
     n = sum(c.cell_type == "code" for c in nb.cells)
     print(f"{path}: {n} code cells executed in {time.monotonic() - started:.0f} s, outputs saved")
