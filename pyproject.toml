@@ -1,0 +1,34 @@
+[project]
+name = "armstat-trade"
+version = "0.1.0"
+description = "Collector and DuckDB database of Armenia foreign trade statistics published by Armstat (armstat.am, nid=160)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "duckdb>=1.1",
+    "lxml>=5.0",
+    "pandas>=2.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+7z = ["py7zr>=0.21"]
+
+[project.scripts]
+armstat-trade = "armstat_trade.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"

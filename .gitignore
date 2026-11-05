@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Bulky data: reproducible with `make all` (catalogs in data/catalog are versioned)
+data/raw/
+data/interim/*.txt
+data/*.duckdb
+data/*.duckdb.wal
+data/export/
+
+# OS
+.DS_Store

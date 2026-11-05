@@ -1,0 +1,233 @@
+[
+  {
+    "nid": 160,
+    "lang": "en",
+    "kind": "index",
+    "url": "https://armstat.am/en/?nid=160",
+    "title": "External trade database",
+    "fetched_at": "2026-11-05T08:53:35+00:00",
+    "sha256": "bc9ee67bfc7c5bc67ac1164270786d8eda6d1c45e63f6254319ebd5a0760e3ba",
+    "subpages": [
+      148,
+      159,
+      717,
+      766,
+      777,
+      778
+    ]
+  },
+  {
+    "nid": 160,
+    "lang": "hy",
+    "kind": "index",
+    "url": "https://armstat.am/am/?nid=160",
+    "title": "Արտաքին առևտրի տվյալների բազա",
+    "fetched_at": "2026-11-05T08:53:38+00:00",
+    "sha256": "0e2de7f333c6903b0c44797a0363aba1efa99932075850510b5c17a8613bf7bd",
+    "subpages": [
+      148,
+      159,
+      717,
+      766,
+      777,
+      778
+    ]
+  },
+  {
+    "nid": 160,
+    "lang": "ru",
+    "kind": "index",
+    "url": "https://armstat.am/ru/?nid=160",
+    "title": "База данных внешней торговли",
+    "fetched_at": "2026-11-05T08:53:40+00:00",
+    "sha256": "bacedb4a3fe3a3cc1c22c5473d23044368365a94cf36eb35c4cedb3fd745a99d",
+    "subpages": [
+      148,
+      159,
+      717,
+      766,
+      777,
+      778
+    ]
+  },
+  {
+    "nid": 148,
+    "lang": "en",
+    "kind": "db_commodity",
+    "url": "https://armstat.am/en/?nid=148",
+    "title": "External trade database According to the Commodity Nomenclature at 4-digit level",
+    "fetched_at": "2026-11-05T08:53:43+00:00",
+    "sha256": "d65eb46f2610da8ca4142fd3d8400d35637f0d20694e209946ce7fa78bf056be",
+    "subpages": []
+  },
+  {
+    "nid": 148,
+    "lang": "hy",
+    "kind": "db_commodity",
+    "url": "https://armstat.am/am/?nid=148",
+    "title": "Արտաքին առևտրի տվյալների բազա ըստ ապրանքային անվանացուցակի 4-նիշ դասակարգման",
+    "fetched_at": "2026-11-05T08:53:46+00:00",
+    "sha256": "ab35290ddc3d59cfe7365b9c121f5ed7153f5bff5811b3fd15c05886cae6b881",
+    "subpages": []
+  },
+  {
+    "nid": 148,
+    "lang": "ru",
+    "kind": "db_commodity",
+    "url": "https://armstat.am/ru/?nid=148",
+    "title": "База данных внешней торговли по видам товарной номенклатуры внешэкономической деятельности на 4-х значной уровне",
+    "fetched_at": "2026-11-05T08:53:51+00:00",
+    "sha256": "fc730cad733b5d798681422829e09d628e071d912ab6c274d48c1db5aaf5d5bd",
+    "subpages": []
+  },
+  {
+    "nid": 159,
+    "lang": "en",
+    "kind": "db_country",
+    "url": "https://armstat.am/en/?nid=159",
+    "title": "External trade database",
+    "fetched_at": "2026-11-05T08:53:53+00:00",
+    "sha256": "7e81696295ddba25e9520ba76c5e36395b126bfca821779d2c1e790a588a74b2",
+    "subpages": []
+  },
+  {
+    "nid": 159,
+    "lang": "hy",
+    "kind": "db_country",
+    "url": "https://armstat.am/am/?nid=159",
+    "title": "Արտաքին առևտրի տվյալների բազա",
+    "fetched_at": "2026-11-05T08:53:55+00:00",
+    "sha256": "0c0bb22af7e7cb766f2e0102f8320391ac173e562be6a8a39b41d7001f45ac5d",
+    "subpages": []
+  },
+  {
+    "nid": 159,
+    "lang": "ru",
+    "kind": "db_country",
+    "url": "https://armstat.am/ru/?nid=159",
+    "title": "База данных внешней торговли",
+    "fetched_at": "2026-11-05T08:53:57+00:00",
+    "sha256": "e8992032b479579844664d53ba4a7d1c64ec1e6f218b9d6b83b32c257d4c6d82",
+    "subpages": []
+  },
+  {
+    "nid": 717,
+    "lang": "en",
+    "kind": "db_country",
+    "url": "https://armstat.am/en/?nid=717",
+    "title": "External trade database",
+    "fetched_at": "2026-11-05T08:53:59+00:00",
+    "sha256": "68c7468c8b3cf915197f5827e59577c9b12beffe275b2007a87baf8d8b2f4614",
+    "subpages": []
+  },
+  {
+    "nid": 717,
+    "lang": "hy",
+    "kind": "db_country",
+    "url": "https://armstat.am/am/?nid=717",
+    "title": "Արտաքին առևտրի տվյալների բազա",
+    "fetched_at": "2026-11-05T08:54:01+00:00",
+    "sha256": "5e48856aff5f999f8e8abee468ddf7d5bc70ad6a78e6ee9e9fe57c37581646b4",
+    "subpages": []
+  },
+  {
+    "nid": 717,
+    "lang": "ru",
+    "kind": "db_country",
+    "url": "https://armstat.am/ru/?nid=717",
+    "title": "База данных внешней торговли",
+    "fetched_at": "2026-11-05T08:54:03+00:00",
+    "sha256": "04ed4ae458fbd170ec1a78243b29d6e04bd927e0cc343a62f7c1661a8b186d93",
+    "subpages": []
+  },
+  {
+    "nid": 766,
+    "lang": "en",
+    "kind": "files",
+    "url": "https://armstat.am/en/?nid=766",
+    "title": "Foreign Trade of the Republic of Armenia (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+    "fetched_at": "2026-11-05T08:54:05+00:00",
+    "sha256": "d2caaf3a746fba2b76b99e4d7ffef4a22c218e4f53d342c38b1f89def0f788e4",
+    "subpages": []
+  },
+  {
+    "nid": 766,
+    "lang": "hy",
+    "kind": "files",
+    "url": "https://armstat.am/am/?nid=766",
+    "title": "Հայաստանի Հանրապետության արտաքին առևտուրը (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+    "fetched_at": "2026-11-05T08:54:08+00:00",
+    "sha256": "165e5e95cf2cbfc3be827c47435685f5d39c1efdcbc3d7af6f9e3f26ab267e4e",
+    "subpages": []
+  },
+  {
+    "nid": 766,
+    "lang": "ru",
+    "kind": "files",
+    "url": "https://armstat.am/ru/?nid=766",
+    "title": "Внешняя торговля Республики Армения (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)",
+    "fetched_at": "2026-11-05T08:54:10+00:00",
+    "sha256": "4dc9836a2e4ec5e365d655755e3c460afd5caa1661d62cd8a0e0e7a4053e32b4",
+    "subpages": []
+  },
+  {
+    "nid": 777,
+    "lang": "en",
+    "kind": "files",
+    "url": "https://armstat.am/en/?nid=777",
+    "title": "Foreign Trade of the Republic of Armenia (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+    "fetched_at": "2026-11-05T08:54:13+00:00",
+    "sha256": "603f876289e508ec3468c7c9f5077e0dd60b74c1e71b139a29a0c09c9fce8cbf",
+    "subpages": []
+  },
+  {
+    "nid": 777,
+    "lang": "hy",
+    "kind": "files",
+    "url": "https://armstat.am/am/?nid=777",
+    "title": "Հայաստանի Հանրապետության արտաքին առևտուրը (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+    "fetched_at": "2026-11-05T08:54:17+00:00",
+    "sha256": "4bb06b9f724f3bd42bdf5ba3ab71279e14e54694bf208efadd755d679bb3f877",
+    "subpages": []
+  },
+  {
+    "nid": 777,
+    "lang": "ru",
+    "kind": "files",
+    "url": "https://armstat.am/ru/?nid=777",
+    "title": "Внешняя торговля Республики Армения (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)",
+    "fetched_at": "2026-11-05T08:54:18+00:00",
+    "sha256": "6a5c878e1dafaf9c38f7329eb6d9861d4bd1a1e9d0aee2f12624cec94cb2a4d2",
+    "subpages": []
+  },
+  {
+    "nid": 778,
+    "lang": "en",
+    "kind": "files",
+    "url": "https://armstat.am/en/?nid=778",
+    "title": "Foreign Trade of the Republic of Armenia (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+    "fetched_at": "2026-11-05T08:54:22+00:00",
+    "sha256": "3d8bbcd3214d580030245e9d9dab497349606327c31d81b46cf55798627f3376",
+    "subpages": []
+  },
+  {
+    "nid": 778,
+    "lang": "hy",
+    "kind": "files",
+    "url": "https://armstat.am/am/?nid=778",
+    "title": "Հայաստանի Հանրապետության արտաքին առևտուրը (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+    "fetched_at": "2026-11-05T08:54:25+00:00",
+    "sha256": "0db9af1db5e5b7fa51ea261bf94fb9797fcc39956db591f5775ed478d79fe5e8",
+    "subpages": []
+  },
+  {
+    "nid": 778,
+    "lang": "ru",
+    "kind": "files",
+    "url": "https://armstat.am/ru/?nid=778",
+    "title": "Внешняя торговля Республики Армения (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)",
+    "fetched_at": "2026-11-05T08:54:27+00:00",
+    "sha256": "d2522b1fab8cd8bae308708be09b1fb7810180d1db6ff9d1538a674e88d9e5d3",
+    "subpages": []
+  }
+]

@@ -1,0 +1,453 @@
+[
+  {
+    "file_id": "99516683",
+    "ext": "7z",
+    "url": "https://armstat.am/file/doc/99516683.7z",
+    "nid": 766,
+    "level": 2,
+    "year": null,
+    "hidden": true,
+    "titles": {},
+    "size": 893382,
+    "sha256": "ed25e5ddd335c60094be0025f08e71e6d3547ed14b09c740534a397dc322ab3b",
+    "members": [
+      "2_nish_2018.xlsx",
+      "ft_2_nish_2018_21.pdf"
+    ]
+  },
+  {
+    "file_id": "99516688",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99516688.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": null,
+    "hidden": true,
+    "titles": {},
+    "size": 248909,
+    "sha256": "9b560167b265e5d787d737ea2635e0538b61fe3d9eb23a8c1e08387d408ed4bd"
+  },
+  {
+    "file_id": "99516693",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99516693.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": null,
+    "hidden": true,
+    "titles": {},
+    "size": 832067,
+    "sha256": "f580d98e6b217ac3c0749991774beb1c221da5f600790e47bf533b804839b7d5"
+  },
+  {
+    "file_id": "99520258",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99520258.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": null,
+    "hidden": true,
+    "titles": {},
+    "size": 243256,
+    "sha256": "25a2a29d965e6efcd0d2fab74fc1c15f6ddd4ecab3adcb4b28592549bf8ae728"
+  },
+  {
+    "file_id": "99525728",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99525728.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": null,
+    "hidden": true,
+    "titles": {},
+    "size": 880099,
+    "sha256": "0d8bba40f61af95b0992bc435812bd9709d39f74ae18ef7d1f3eefa39d5f6132"
+  },
+  {
+    "file_id": "99528903",
+    "ext": "7z",
+    "url": "https://armstat.am/file/doc/99528903.7z",
+    "nid": 778,
+    "level": 10,
+    "year": 2017,
+    "hidden": false,
+    "titles": {
+      "en": "Russian 2017",
+      "hy": "ռուս. 2017",
+      "ru": "Русский 2017"
+    },
+    "size": 1888924,
+    "sha256": "aac3f81e92bef809e7643fac3fe405f7824f51341289ade00df1f80d917c0e3b",
+    "members": [
+      "ТНВЭД_2017.doc"
+    ]
+  },
+  {
+    "file_id": "99531973",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99531973.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2018,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2018 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2018 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2018 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 770143,
+    "sha256": "949241b65cf6e42c9ffbde8e688e52ea9b1e4953ecc2c943730049f210382b8e"
+  },
+  {
+    "file_id": "99531978",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99531978.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2019,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2019 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2019 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2019 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 850931,
+    "sha256": "8e4184140825deb765da9da75c38dc969532f4f510763d281df24da847ea7ed5"
+  },
+  {
+    "file_id": "99531983",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99531983.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2020,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2020 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2020 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2020 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 829442,
+    "sha256": "2116f822419ffbcd0a8ebe729b0219be352121c7ea21cb16532f07f05ebc4e32"
+  },
+  {
+    "file_id": "99533063",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99533063.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2018,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2018 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2018 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2018 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 315888,
+    "sha256": "1bd55d48742cd3814abee746b035247b164e205462802c1792e2e363599afa39"
+  },
+  {
+    "file_id": "99533068",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99533068.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2019,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2019 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2019 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2019 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 309232,
+    "sha256": "432ce86e07e7e3914a46d94dad81617e5cc8d87b7a256a47ac6ea2d3bd361066"
+  },
+  {
+    "file_id": "99533073",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99533073.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2020,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2020 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2020 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2020 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 304280,
+    "sha256": "f3df9599a3532e3d0f8b0dbba9b31d57aaf19b2043d38c8e9382a9296119bb25"
+  },
+  {
+    "file_id": "99533078",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99533078.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2021,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2021 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2021 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2021 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 285961,
+    "sha256": "637ec2d1cbab51205712b1879d13e9b6a568070369e3e0d4927c9928f21172f7"
+  },
+  {
+    "file_id": "99534448",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99534448.xlsx",
+    "nid": 766,
+    "level": 2,
+    "year": 2021,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2021 (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2021 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2021 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)"
+    },
+    "size": 849609,
+    "sha256": "9b69aab120b8d3a056b282a26ccb4600f0759d510d9418f5d0038770ef70a239"
+  },
+  {
+    "file_id": "99535518",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99535518.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2021,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2021 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2021 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2021 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 842140,
+    "sha256": "d335ab9db2837716ff4b05b2f0dd76c17a8659596ee241666e7f83a7a23cb84b"
+  },
+  {
+    "file_id": "99536208",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99536208.xlsx",
+    "nid": 766,
+    "level": 2,
+    "year": 2019,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2019 (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2019 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2019 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)"
+    },
+    "size": 805819,
+    "sha256": "bf4cc9d62f3caf839bf2d5b9d17ca600006b17cd744be635e1b4c829acf9ff58"
+  },
+  {
+    "file_id": "99536213",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99536213.xlsx",
+    "nid": 766,
+    "level": 2,
+    "year": 2020,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2020 (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2020 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2020 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)"
+    },
+    "size": 6308464,
+    "sha256": "d62809cf5dc3889cb75fd527c80f786f2527b86def7d9c7e11cff8d2fd6a2638"
+  },
+  {
+    "file_id": "99540053",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99540053.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2022,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2022 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2022 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2022 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 292048,
+    "sha256": "3374ccb466b15fe485f04a2bdad4cd93948a84268b6c55da391dd0b3bdde03ba"
+  },
+  {
+    "file_id": "99541793",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99541793.xlsx",
+    "nid": 766,
+    "level": 2,
+    "year": 2022,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2022 (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2022 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2022 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)"
+    },
+    "size": 884170,
+    "sha256": "fbc159a8746670b6fd00b9d5734c58b9206cec72268a47194207e9273be1839c"
+  },
+  {
+    "file_id": "99555933",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99555933.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2023,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2023 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2023 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2023 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 319112,
+    "sha256": "36c2a5747534ffe92b2f3199665f4111cd1ad2cdb11dee06d751afebee98f1fc"
+  },
+  {
+    "file_id": "99563478",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99563478.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2024,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2024 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2024 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2024 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 311469,
+    "sha256": "f2b10abced43085bef12f7345bfac97501a686e569061552d878a7f3e30f7ec0"
+  },
+  {
+    "file_id": "99563483",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99563483.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2024,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2024 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2024 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2024 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 1119072,
+    "sha256": "8be5d4881ce819b512762b43265e116e7e1e509be5099be5aef3499451099d51"
+  },
+  {
+    "file_id": "99563883",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99563883.xlsx",
+    "nid": 766,
+    "level": 2,
+    "year": 2023,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2023 (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2023 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2023 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)"
+    },
+    "size": 914514,
+    "sha256": "451390c533acfe723d244e24398e39625f629db9bf031f5bb915a65a3ba4d6cf"
+  },
+  {
+    "file_id": "99563888",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99563888.xlsx",
+    "nid": 766,
+    "level": 2,
+    "year": 2024,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2024 (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2024 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2024 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)"
+    },
+    "size": 888585,
+    "sha256": "d38912ba81aced2bd9db3814f3bcfe38ff75af6dc7d002b95057b9dabd5cb74d"
+  },
+  {
+    "file_id": "99569933",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99569933.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2022,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2022 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2022 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2022 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 1195958,
+    "sha256": "640304d1d365d3a5cf6fdbe4277b75d4dda99990f19967e34af1b0f70ddc286f"
+  },
+  {
+    "file_id": "99569938",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99569938.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2023,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2023 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2023 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2023 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 1311917,
+    "sha256": "fe39c2f16c96cc5389b13ca79a2876739da5c08dd464b098d75ca6a2eff21bdb"
+  },
+  {
+    "file_id": "99570828",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99570828.xlsx",
+    "nid": 778,
+    "level": 10,
+    "year": 2025,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2025 (According to the EEU Commodity Nomenclature of External Economic Activity at 10-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2025 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 10-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2025 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 10-значном уровне)"
+    },
+    "size": 1000879,
+    "sha256": "faa340238283398e2a8f237ec1cddaef9777bf18b74ba48ad9bb7ccd39051579"
+  },
+  {
+    "file_id": "99570838",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99570838.xlsx",
+    "nid": 777,
+    "level": 4,
+    "year": 2025,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2025 (According to the EEU Commodity Nomenclature of External Economic Activity at 4-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2025 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 4-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2025 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 4-значном уровне)"
+    },
+    "size": 301097,
+    "sha256": "9098c92f82243a3b642767ec736f9b48a0abdda9d3e5769c5fd304ac4ce60449"
+  },
+  {
+    "file_id": "99572223",
+    "ext": "xlsx",
+    "url": "https://armstat.am/file/doc/99572223.xlsx",
+    "nid": 766,
+    "level": 2,
+    "year": 2018,
+    "hidden": false,
+    "titles": {
+      "en": "Foreign Trade of the Republic of Armenia for 2018 (According to the EEU Commodity Nomenclature of External Economic Activity at 2-digit level)",
+      "hy": "Հայաստանի Հանրապետության արտաքին առևտուրը 2018 թվականին (ըստ ԵԱՏՄ արտաքին տնտեսական գործունեության ապրանքային անվանացանկի 2-նիշ դասակարգման)",
+      "ru": "Внешняя торговля Республики Армения за 2018 год (по видам товарной номенклатуры внешнеэкономической деятельности ЕАЭС на 2-значном уровне)"
+    },
+    "size": 804632,
+    "sha256": "e3b5fcfe906bdda4409022c8b7bd51be303ebe032911ab534aca09f305abc597"
+  }
+]
