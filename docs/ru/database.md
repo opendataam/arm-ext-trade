@@ -1,7 +1,9 @@
 # База данных DuckDB
 
+[English](../en/database.md) | [Հայերեն](../hy/database.md) | **Русский**
+
 Файл: `data/armstat_trade.duckdb` (собирается командой `make build`; полностью пересоздаётся из
-`data/raw` и `data/catalog` при каждом запуске). Подробный перечень колонок — [data_dictionary.md](data_dictionary.md)
+`data/raw` и `data/catalog` при каждом запуске). Подробный перечень колонок — [data_dictionary.md](../data_dictionary.md)
 (генерируется из комментариев `COMMENT ON`, которые хранятся и в самой БД).
 
 ## Принципы проектирования
@@ -145,7 +147,7 @@ erDiagram
 
 ## Примеры запросов
 
-Больше примеров — с графиками, сравнением источников и ревизий — в тетрадке [examples.ipynb](examples.ipynb).
+Больше примеров — с графиками, сравнением источников и ревизий — в тетрадке [examples.ipynb](../examples.ipynb).
 
 ```sql
 -- Топ-10 стран по экспорту в 2025 г. (веб-БД, тыс. $)

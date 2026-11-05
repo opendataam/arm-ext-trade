@@ -37,7 +37,7 @@ PAGES: dict[int, dict] = {
 }
 
 # Web database: which page serves which years (the country database 159/717 is one
-# backend table; 159 is used for years < 2017 and 717 for 2017+, see docs/web_database.md).
+# backend table; 159 is used for years < 2017 and 717 for 2017+, see docs/en/sources.md).
 COUNTRY_DB_SPLIT_YEAR = 2017
 
 # Period code used by the web database for annual values.

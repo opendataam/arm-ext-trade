@@ -1,6 +1,6 @@
 # Перечень источников
 
-Генерируется автоматически (`python -m armstat_trade docs`) из таблиц `meta_file`, `meta_workbook`, `meta_db_query`.
+Генерируется автоматически (`python -m armstat_trade docs`) из таблиц `meta_file`, `meta_workbook`, `meta_db_query` — не редактировать вручную.
 
 ## Файлы
 

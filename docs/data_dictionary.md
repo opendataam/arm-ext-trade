@@ -1,7 +1,7 @@
-# Словарь данных (data dictionary)
+# Data dictionary
 
-Генерируется автоматически из каталога DuckDB командой `python -m armstat_trade docs` — не редактировать вручную.
-Описания таблиц и колонок (на английском, они же хранятся в самой БД: `duckdb_tables()`, `duckdb_columns()`) задаются в `sql/schema.sql`, `sql/views.sql`, `sql/qc.sql` (`COMMENT ON`). Обзор схемы — [database.md](database.md).
+Generated automatically from the DuckDB catalog by `python -m armstat_trade docs` — do not edit by hand.
+The descriptions of tables and columns are also stored in the database itself (`duckdb_tables()`, `duckdb_columns()`) and are defined in `sql/schema.sql`, `sql/views.sql`, `sql/qc.sql` (`COMMENT ON`). Schema overview: [database.md](en/database.md) ([hy](hy/database.md), [ru](ru/database.md)).
 
 ## Metadata / provenance
 
@@ -78,7 +78,7 @@ Every sheet of every workbook with its detected type and the table it was loaded
 | `workbook_id` | VARCHAR |  |
 | `sheet` | VARCHAR |  |
 | `sheet_index` | INTEGER |  |
-| `sheet_type` | VARCHAR | Detected table type, see docs/files.md |
+| `sheet_type` | VARCHAR | Detected table type, see docs/en/files.md |
 | `year` | INTEGER |  |
 | `title` | VARCHAR |  |
 | `n_cells` | INTEGER | Non-empty cells (all of them are in raw_xlsx_cell) |

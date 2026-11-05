@@ -92,10 +92,12 @@ def _export_parquet(con: duckdb.DuckDBPyConnection, out: Path) -> Path:
         with zipfile.ZipFile(zpath, "w", compression=zipfile.ZIP_STORED) as z:  # parquet is already compressed
             for name in names:
                 z.write(Path(tmp) / f"{name}.parquet", f"parquet/{name}.parquet")
-            for doc in ("data_dictionary.md", "database.md"):
-                p = config.ROOT / "docs" / doc
-                if p.exists():
-                    z.write(p, f"parquet/{doc}")
+            docs = config.ROOT / "docs"
+            for src, name in [(docs / "data_dictionary.md", "data_dictionary.md")] + [
+                    (docs / lang / "database.md", "database.md" if lang == "en" else f"database.{lang}.md")
+                    for lang in ("en", "hy", "ru")]:
+                if src.exists():
+                    z.write(src, f"parquet/{name}")
     log.info("parquet: %d tables and views -> %s", len(names), zpath)
     return zpath
 
@@ -105,68 +107,69 @@ def _notes(con, tag: str, date: str, commit: str, out: Path) -> Path:
         cur = con.execute(sql)
         cols = [d[0] for d in cur.description]
         rows = cur.fetchall()
-        fmt = lambda v: f"{v:,}".replace(",", " ") if isinstance(v, int) else ("" if v is None else str(v))  # noqa: E731
+        fmt = lambda v: f"{v:,}" if isinstance(v, int) else ("" if v is None else str(v))
         return "\n".join(["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
                          + ["| " + " | ".join(fmt(v) for v in r) + " |" for r in rows])
 
     coverage = table("""
-        SELECT источник, годы, месяцы, объём FROM (
-            SELECT 0 AS ord, 'веб-база: по странам' AS источник, min(year) || '–' || max(year) AS годы,
-                   min(year) FILTER (WHERE month IS NOT NULL) || '–' || max(year) AS месяцы,
-                   format('{:,} строк', count(*)) AS объём
+        SELECT source, years, months, volume FROM (
+            SELECT 0 AS ord, 'web database: by country' AS source, min(year) || '–' || max(year) AS years,
+                   min(year) FILTER (WHERE month IS NOT NULL) || '–' || max(year) AS months,
+                   format('{:,} rows', count(*)) AS volume
             FROM db_country_trade
             UNION ALL
-            SELECT 1, 'веб-база: по товарам (4 знака)', min(year) || '–' || max(year),
-                   min(year) FILTER (WHERE month IS NOT NULL) || '–' || max(year), format('{:,} строк', count(*))
+            SELECT 1, 'web database: by commodity (4 digits)', min(year) || '–' || max(year),
+                   min(year) FILTER (WHERE month IS NOT NULL) || '–' || max(year), format('{:,} rows', count(*))
             FROM db_commodity_trade
             UNION ALL
-            SELECT 1 + replace(family, 'hs', '')::INT, 'файлы xlsx: ' || replace(family, 'hs', '') || '-значный уровень ТН ВЭД',
+            SELECT 1 + replace(family, 'hs', '')::INT, 'xlsx files: CN FEA ' || replace(family, 'hs', '') || '-digit level',
                    min(year) || '–' || max(year), NULL,
-                   format('{} книг ({} текущих)', count(*), count(*) FILTER (WHERE is_current))
+                   format('{} workbooks ({} current)', count(*), count(*) FILTER (WHERE is_current))
             FROM meta_workbook GROUP BY family
-        ) ORDER BY ord""").replace(",", " ")
+        ) ORDER BY ord""")
     last_year = con.execute("SELECT max(year) FROM db_country_trade").fetchone()[0]
     last_month = con.execute("SELECT max(month) FROM db_country_trade WHERE year = ?", [last_year]).fetchone()[0]
-    qc = table("SELECT check_name AS проверка, status AS статус, n_issues AS проблем FROM qc_summary")
-    assets = "\n".join(f"| `{n}` | {(out / n).stat().st_size / 1e6:.1f} МБ |" for n in ASSETS.values())
+    qc = table("SELECT check_name AS check, status, n_issues AS issues FROM qc_summary")
+    assets = "\n".join(f"| `{n}` | {(out / n).stat().st_size / 1e6:.1f} MB |" for n in ASSETS.values())
     url = f"https://github.com/{repo()}"
-    text = f"""Снимок данных о внешней торговле Армении с сайта Армстата (<https://armstat.am/en/?nid=160>),
-собранных {date} на трёх языках (en/hy/ru). База собрана кодом коммита [`{commit[:7]}`]({url}/commit/{commit}).
+    text = f"""Snapshot of the foreign trade data of Armenia from the Armstat website (<https://armstat.am/en/?nid=160>),
+collected on {date} in three languages (en/hy/ru). The database was built with the code of commit
+[`{commit[:7]}`]({url}/commit/{commit}).
 
-## Файлы
+## Files
 
-| файл | размер |
+| file | size |
 |---|---|
 {assets}
 
-* `armstat_trade.duckdb.xz` — база DuckDB (описание: [database.md]({url}/blob/{commit}/docs/database.md));
-* `armstat_trade-parquet.zip` — все таблицы и представления в Parquet + словарь данных;
-* `armstat_trade-raw.tar.xz` — исходные данные: страницы сайта, xlsx/7z, выгрузки веб-базы (`raw/`) и манифесты (`catalog/`);
-* `SHA256SUMS` — контрольные суммы.
+* `armstat_trade.duckdb.xz` — DuckDB database (description: [database.md]({url}/blob/{commit}/docs/en/database.md));
+* `armstat_trade-parquet.zip` — all tables and views as Parquet + data dictionary;
+* `armstat_trade-raw.tar.xz` — raw data: site pages, xlsx/7z, web database exports (`raw/`) and manifests (`catalog/`);
+* `SHA256SUMS` — checksums.
 
-## Как использовать
+## Usage
 
 ```bash
 git clone {url}.git && cd arm-ext-trade
 make install
-make download          # база -> data/armstat_trade.duckdb (проверка SHA256)
-make lab               # тетрадка с примерами
+make download          # database -> data/armstat_trade.duckdb (SHA256 verified)
+make lab               # notebook with examples
 ```
 
-Пересборка из исходных данных без обращения к сайту: `git checkout {tag}`, `make download-raw build`.
-Вручную: `curl -LO {url}/releases/download/{tag}/armstat_trade.duckdb.xz && xz -d armstat_trade.duckdb.xz`.
+Rebuild from the raw data without touching the website: `git checkout {tag}`, `make download-raw build`.
+Manually: `curl -LO {url}/releases/download/{tag}/armstat_trade.duckdb.xz && xz -d armstat_trade.duckdb.xz`.
 
-## Охват
+## Coverage
 
 {coverage}
 
-{last_year} год неполный (данные веб-базы — по {last_month}-й месяц); данные последних двух лет Армстат уточняет.
+{last_year} is incomplete (web database data up to month {last_month}); Armstat revises the data of the last two years.
 
-## Проверки качества
+## Data quality checks
 
 {qc}
 
-Подробности: [data_quality.md]({url}/blob/{commit}/docs/data_quality.md).
+Details: [data_quality.md]({url}/blob/{commit}/docs/en/data_quality.md).
 """
     path = out / NOTES
     path.write_text(text, encoding="utf-8")
@@ -230,7 +233,7 @@ def publish(tag: str | None = None) -> str:
     files = [str(out / n) for n in (*ASSETS.values(), SUMS)]
     date = tag.removeprefix("data-")
     subprocess.run(["gh", "release", "create", tag, *files, "--repo", repo(), "--target", _git("rev-parse", "HEAD"),
-                    "--title", f"Данные на {date}", "--notes-file", str(out / NOTES)], check=True)
+                    "--title", f"Data as of {date}", "--notes-file", str(out / NOTES)], check=True)
     log.info("published release %s to %s", tag, repo())
     return tag
 
@@ -259,8 +262,7 @@ def _fetch(session: requests.Session, url: str, dst: Path) -> None:
         r.raise_for_status()
         tmp = dst.with_suffix(dst.suffix + ".part")
         with open(tmp, "wb") as f:
-            for chunk in r.iter_content(1 << 20):
-                f.write(chunk)
+            f.writelines(r.iter_content(1 << 20))
         tmp.replace(dst)
 
 

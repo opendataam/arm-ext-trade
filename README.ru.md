@@ -1,0 +1,230 @@
+# Внешняя торговля Армении: данные Армстата в DuckDB
+
+[English](README.md) | [Հայերեն](README.hy.md) | **Русский**
+
+Сбор, нормализация и документирование данных о внешней торговле Республики Армения из раздела
+«External trade database» сайта Статистического комитета РА (Армстат): <https://armstat.am/en/?nid=160>.
+
+Собирается **всё**, что опубликовано в разделе, **на трёх языках** (английский, армянский, русский):
+
+* **веб-база данных** (интерфейс запросов):
+  * по странам-партнёрам — годовые данные с 1995 г., месячные с 2003 г. (nid 159 и 717);
+  * по 4-значным товарным позициям ТН ВЭД — годовые с 1995 г., месячные с 2007 г. (nid 148);
+* **файлы xlsx** по ТН ВЭД ЕАЭС на 2-, 4- и 10-значном уровне за 2018–2025 гг. (nid 766, 777, 778),
+  включая скрытые ранние редакции и архивы 7z (в т. ч. документ ТН ВЭД ЕАЭС 2017).
+
+Результат — база данных DuckDB `data/armstat_trade.duckdb` со справочниками на трёх языках,
+нормализованными таблицами фактов, полной копией исходных ячеек и выгрузок, проверками качества
+и документацией.
+
+## Готовые данные: релизы
+
+База и исходные данные в git не хранятся (база больше лимита GitHub в 100 МБ, а история росла бы
+с каждой пересборкой). Каждый сбор публикуется как **релиз** репозитория
+([Releases](https://github.com/opendataam/arm-ext-trade/releases)) с тегом `data-ГГГГ-ММ-ДД` — дата
+сбора; тег указывает на коммит кода, которым собрана база.
+
+| файл релиза | содержание | размер* |
+|---|---|---|
+| `armstat_trade.duckdb.xz` | база DuckDB | ~25 МБ (124 МБ распакованная) |
+| `armstat_trade-parquet.zip` | все таблицы и представления в Parquet + словарь данных | ~40 МБ |
+| `armstat_trade-raw.tar.xz` | исходные данные: страницы сайта, xlsx/7z, выгрузки веб-базы (`raw/`) и манифесты (`catalog/`) | ~46 МБ |
+| `SHA256SUMS` | контрольные суммы | |
+
+\* для снимка 2026-11-05.
+
+```bash
+make install
+make download            # последний релиз: база -> data/armstat_trade.duckdb (с проверкой SHA256)
+make lab                 # тетрадка с примерами
+```
+
+Другие варианты: `make download-parquet` (Parquet → `data/parquet/`), `make download-raw` (исходные
+данные → `data/raw/`, затем `make build` — пересборка без обращения к сайту), конкретный снимок —
+`make download TAG=data-2026-11-05`. Без Python:
+`curl -LO https://github.com/opendataam/arm-ext-trade/releases/latest/download/armstat_trade.duckdb.xz && xz -d armstat_trade.duckdb.xz`.
+
+Для точной пересборки снимка переключитесь на его тег (`git checkout data-2026-11-05`): манифесты
+`data/catalog/` в git должны соответствовать исходным данным снимка (или используйте
+`python -m armstat_trade download --part raw --with-catalog`).
+
+Публикация нового снимка (сопровождающим): собрать данные (`make all`), закоммитить и отправить
+изменения манифестов, затем `make release` — архивы и `RELEASE_NOTES.md` создаются в
+`data/release/<тег>/` и загружаются через `gh release create` (нужны `gh` и права на запись;
+`make release-pack` — только упаковать).
+
+## Быстрый старт: собрать всё самостоятельно
+
+```bash
+make install   # создаёт .venv и ставит пакет с extras dev + notebook (через uv, если он есть; Python ≥ 3.10)
+make all       # catalog → fetch-files → fetch-db → tnved → build → docs  (~40–60 минут, в основном загрузка)
+```
+
+Все цели `make` автоматически используют `.venv/bin/python`, если окружение создано (системный
+`pip install` в Homebrew/Debian-Python запрещён, PEP 668). Другой интерпретатор: `make build PY=python3`.
+
+Или по шагам (в активированном окружении: `source .venv/bin/activate`):
+
+```bash
+python -m armstat_trade catalog       # страницы раздела на en/hy/ru → data/catalog/*.json
+python -m armstat_trade fetch-files   # xlsx/7z → data/raw/files (+ распаковка 7z)
+python -m armstat_trade fetch-db      # веб-БД через выгрузку Excel → data/raw/db (≈ 380 запросов)
+python -m armstat_trade tnved         # русские названия разделов/групп из ТН ВЭД 2017 (нужен textutil или soffice)
+python -m armstat_trade build         # → data/armstat_trade.duckdb
+python -m armstat_trade docs          # → docs/data_dictionary.md, docs/{en,hy,ru}/inventory.md
+```
+
+Распаковка 7z требует `7zz`/`7z` (например, `brew install sevenzip`) или пакета `py7zr` (`.venv/bin/python -m pip install '.[7z]'` либо `uv pip install --python .venv/bin/python '.[7z]'`).
+Повторный запуск `fetch-db` докачивает только отсутствующее и всегда обновляет два последних года
+(`--refresh-last N`), а также перепроверяет уже скачанные выгрузки и перезапрашивает некорректные.
+
+Пример запроса:
+
+```bash
+duckdb data/armstat_trade.duckdb -c "
+  SELECT year, round(sum(export_kusd)/1e3) AS export_musd, round(sum(import_origin_kusd)/1e3) AS import_musd
+  FROM v_db_country_annual GROUP BY year ORDER BY year"
+```
+
+## Тетрадка Jupyter с примерами
+
+[`docs/examples.ipynb`](docs/examples.ipynb) — примеры запросов, сравнений источников и графиков. Она хранится
+с результатами выполнения, поэтому её можно просто открыть на GitHub. Чтобы работать с ней интерактивно:
+
+1. Установите окружение (создаёт `.venv` с JupyterLab, matplotlib и ядром Python):
+
+   ```bash
+   make install
+   ```
+
+2. Убедитесь, что база есть: файл `data/armstat_trade.duckdb` (скачайте её — `make download` — или соберите:
+   в первый раз `make all`, при уже скачанных исходных данных — `make build`).
+
+3. Запустите JupyterLab с тетрадкой:
+
+   ```bash
+   make lab
+   ```
+
+   Откроется браузер с тетрадкой (`http://localhost:8888/lab/tree/docs/examples.ipynb`), в панели
+   файлов — весь репозиторий. Настройки сервера — в [`scripts/jupyter_lab_config.py`](scripts/jupyter_lab_config.py):
+   своё рабочее пространство JupyterLab в `.jupyter/` (вкладки других проектов не восстанавливаются),
+   ядро через unix-сокеты вместо TCP. То же без `make`:
+
+   ```bash
+   source .venv/bin/activate
+   jupyter trust docs/examples.ipynb
+   jupyter lab --config scripts/jupyter_lab_config.py docs/examples.ipynb
+   ```
+
+   `jupyter trust` помечает тетрадку доверенной для вашего пользователя: результаты в ней получены
+   не в вашем браузере, и без этого JupyterLab пишет `Notebook ... is not trusted` и не показывает
+   HTML/JS-результаты (графики PNG и таблицы видны в любом случае).
+
+4. Проверьте ядро в правом верхнем углу: **Python 3 (ipykernel)** — это ядро из `.venv`
+   (`.venv/bin/jupyter kernelspec list` покажет путь внутри `.venv`).
+
+5. Выполните ячейки: **Run → Run All Cells** или по одной — `Shift+Enter`. Первая ячейка находит корень
+   репозитория (по `pyproject.toml`) и открывает базу только для чтения, так что Jupyter можно запускать
+   из любой папки репозитория.
+
+6. Остановка — `Ctrl+C` в терминале, где запущен `make lab`, и подтверждение `y`.
+
+**VS Code:** откройте `docs/examples.ipynb`, нажмите **Select Kernel → Python Environments** и выберите
+`.venv/bin/python` (нужно расширение Jupyter).
+
+Полезно знать:
+
+* Если база открыта **на запись** другим процессом (например, `duckdb data/armstat_trade.duckdb`
+  без `-readonly`), тетрадка не сможет к ней подключиться — закройте этот процесс.
+* После пересборки базы (`make build`) перезапустите ядро (**Kernel → Restart Kernel**): открытое
+  подключение продолжает видеть прежний файл.
+* Перед коммитом обновите сохранённые результаты одним чистым прогоном всех ячеек по порядку:
+  `make notebook` (без браузера; выполняет тетрадку и записывает результаты в файл).
+
+## Структура репозитория
+
+```
+├── README.md                  описание на английском; README.hy.md — на армянском, README.ru.md — этот файл
+├── Makefile                   команды конвейера
+├── pyproject.toml             пакет armstat_trade (CLI: armstat-trade)
+├── src/armstat_trade/
+│   ├── config.py              пути, страницы раздела, языки, параметры HTTP
+│   ├── http.py                HTTP-клиент: повторы, паузы между запросами, сеансы
+│   ├── catalog.py             шаг 1: обход страниц на 3 языках, перечень файлов и опций форм
+│   ├── fetch_files.py         шаг 2: загрузка файлов, распаковка 7z, sha256
+│   ├── fetch_db.py            шаг 3: выгрузка веб-БД (запрос → /excelopen.php → проверка)
+│   ├── build.py               шаг 4: разбор и сборка DuckDB
+│   ├── docs.py                генерация словаря данных и перечня источников
+│   ├── release.py             снимки данных в GitHub Releases: упаковка, публикация, загрузка
+│   ├── reference.py           статические справочники и словари соответствий
+│   ├── cli.py, __main__.py    командная строка
+│   └── parsers/
+│       ├── pages.py           HTML страниц: ссылки на файлы, опции форм
+│       ├── db_export.py       выгрузки веб-БД + проверка их соответствия запросу
+│       ├── xlsx_reader.py     быстрый потоковый ридер xlsx (кэшированные значения + формулы)
+│       ├── files_hs2.py       бюллетени по 2-значным группам (универсальный разбор шапок таблиц)
+│       ├── files_hs4.py       таблицы по 4-значным позициям
+│       ├── files_hs10.py      таблицы по 10-значным кодам (иерархия разделов/групп/позиций)
+│       ├── tnved.py           заголовки ТН ВЭД 2017 (.doc)
+│       └── common.py          очистка значений и кодов
+├── sql/
+│   ├── schema.sql             таблицы + COMMENT ON (описания хранятся в самой БД)
+│   ├── views.sql              представления
+│   └── qc.sql                 проверки качества
+├── data/
+│   ├── catalog/               манифесты (в git): pages.json, files.json, db_queries.json, db_options/
+│   ├── interim/               tnved_2017.csv (в git)
+│   ├── raw/                   скачанные страницы, файлы, выгрузки (не в git; в релизах)
+│   ├── release/               упакованные и скачанные снимки (не в git)
+│   └── armstat_trade.duckdb   результат (не в git; в релизах)
+├── docs/
+│   ├── en/, hy/, ru/          документация на английском, армянском и русском
+│   ├── data_dictionary.md     все таблицы и колонки (генерируется)
+│   └── examples.ipynb         тетрадка Jupyter с примерами
+├── scripts/
+│   ├── run_notebook.py        выполнение тетрадки с сохранением результатов (make notebook)
+│   └── jupyter_lab_config.py  настройки JupyterLab для make lab
+└── tests/                     тесты парсеров и собранной БД
+```
+
+## Документация
+
+Документация есть на английском ([docs/en](docs/en)), армянском ([docs/hy](docs/hy)) и русском
+([docs/ru](docs/ru)) языках.
+
+| документ | содержание |
+|---|---|
+| [sources.md](docs/ru/sources.md) | раздел сайта, страницы, языки, устройство веб-БД и её особенности, единицы и условные обозначения |
+| [files.md](docs/ru/files.md) | содержание файлов: листы, колонки, иерархии, особенности |
+| [database.md](docs/ru/database.md) | проект БД: принципы, схема (ER), таблицы, представления, примеры запросов |
+| [data_dictionary.md](docs/data_dictionary.md) | все таблицы и колонки (генерируется, описания на английском) |
+| [inventory.md](docs/ru/inventory.md) | перечень файлов и запросов (генерируется) |
+| [data_quality.md](docs/ru/data_quality.md) | проверки качества и найденные проблемы источников |
+| [examples.ipynb](docs/examples.ipynb) | тетрадка Jupyter: примеры запросов, сравнений источников и визуализаций (интерактивно — `make lab`, см. раздел выше) |
+| [maintenance.md](docs/ru/maintenance.md) | сопровождение: обновление, новые годы, изменения на сайте |
+
+## Основные таблицы
+
+| таблица / представление | что внутри |
+|---|---|
+| `v_db_country_annual`, `v_db_country_monthly` | торговля по странам (экспорт, импорт по стране происхождения и по стране отправления), тыс. $ |
+| `v_db_commodity_annual`, `v_db_commodity_monthly` | торговля по 4-значным позициям ТН ВЭД, т и тыс. $ |
+| `v_file_hs10_current` | 10-значные коды: количество, т, $ (2018–2025) |
+| `v_file_hs4_current` | 4-значные позиции по основе данных (всего / декларации / физлица) |
+| `v_file_hs2_partner_current` | группы ТН ВЭД × страна / группа стран: т, млн драмов, тыс. $ |
+| `file_country_trade`, `file_sitc_trade`, `file_bec_trade`, `file_hs2_trade` | многолетние таблицы бюллетеней (все редакции; `v_*_latest` — последняя) |
+| `dim_country`, `dim_hs`, `dim_hs_section`, … | справочники с названиями на en / hy / ru |
+| `raw_xlsx_cell`, `stg_db_*` | исходные данные без потерь |
+
+## Важно при использовании
+
+* Единицы — как в источнике и указаны в имени колонки (`value_kusd` — тыс. $, `value_usd` — $, …).
+* Строки итогов (`row_type = 'total'`, `'chapter'`, `'group'`, …) хранятся вместе с детальными — фильтруйте.
+* Файлы — публикации на дату выпуска; веб-БД содержит более поздние уточнения. Для одного года значения
+  в разных источниках могут расходиться (см. `qc_file_vs_db_hs4`).
+* 2026 год неполный.
+
+## Источник
+
+Данные: Статистический комитет Республики Армения, <https://armstat.am>. Лицензия кода репозитория пока не выбрана.

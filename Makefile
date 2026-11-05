@@ -15,7 +15,7 @@ help:
 	@echo "make fetch-db     download the web database (Excel exports) -> data/raw/db"
 	@echo "make tnved        extract Russian chapter/section names from the TN VED 2017 document"
 	@echo "make build        (re)build data/armstat_trade.duckdb"
-	@echo "make docs         regenerate docs/data_dictionary.md from the database"
+	@echo "make docs         regenerate docs/data_dictionary.md and docs/*/inventory.md"
 	@echo "make notebook     execute docs/examples.ipynb against the database and save outputs"
 	@echo "make lab          open docs/examples.ipynb in Jupyter Lab (interactive)"
 	@echo "make download     get the latest data snapshot (database) from GitHub releases"

@@ -86,7 +86,7 @@ CREATE TABLE meta_sheet (
     PRIMARY KEY (workbook_id, sheet)
 );
 COMMENT ON TABLE meta_sheet IS 'Every sheet of every workbook with its detected type and the table it was loaded into.';
-COMMENT ON COLUMN meta_sheet.sheet_type IS 'Detected table type, see docs/files.md';
+COMMENT ON COLUMN meta_sheet.sheet_type IS 'Detected table type, see docs/en/files.md';
 COMMENT ON COLUMN meta_sheet.n_cells IS 'Non-empty cells (all of them are in raw_xlsx_cell)';
 COMMENT ON COLUMN meta_sheet.parsed_rows IS 'Data rows loaded into target_table';
 
