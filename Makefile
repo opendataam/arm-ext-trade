@@ -1,10 +1,14 @@
-PY ?= python3
+VENV ?= .venv
+# The project virtualenv is used when it exists: Homebrew/Debian Python forbid
+# system-wide `pip install` (PEP 668). Override with `make ... PY=python3`.
+PY ?= $(if $(wildcard $(VENV)/bin/python),$(VENV)/bin/python,python3)
+UV := $(shell command -v uv 2>/dev/null)
 RUN = PYTHONPATH=src $(PY) -m armstat_trade
 
 .PHONY: help install all catalog fetch-files fetch-db tnved build docs notebook test lint clean
 
 help:
-	@echo "make install      install the package and dev dependencies (editable)"
+	@echo "make install      create $(VENV) and install the package with dev + notebook extras (editable)"
 	@echo "make all          full pipeline: catalog, files, web database, TN VED, build, docs"
 	@echo "make catalog      crawl the site pages in en/hy/ru -> data/catalog"
 	@echo "make fetch-files  download xlsx/7z files -> data/raw/files"
@@ -16,7 +20,13 @@ help:
 	@echo "make test         run tests"
 
 install:
-	$(PY) -m pip install -e '.[dev]'
+ifdef UV
+	$(UV) venv --allow-existing $(VENV)
+	$(UV) pip install --python $(VENV)/bin/python -e '.[dev,notebook]'
+else
+	python3 -m venv $(VENV)
+	$(VENV)/bin/python -m pip install -e '.[dev,notebook]'
+endif
 
 all: catalog fetch-files fetch-db tnved build docs
 
@@ -38,7 +48,7 @@ build:
 docs:
 	$(RUN) docs
 
-# needs: pip install -e '.[notebook]'
+# needs the notebook extras (make install)
 notebook:
 	$(PY) -c "import nbformat; from nbclient import NotebookClient; \
 	nb = nbformat.read('docs/examples.ipynb', as_version=4); \

@@ -18,11 +18,14 @@
 ## Быстрый старт
 
 ```bash
-make install   # pip install -e '.[dev]'  (Python ≥ 3.10; зависимости: duckdb, lxml, pandas, requests)
+make install   # создаёт .venv и ставит пакет с extras dev + notebook (через uv, если он есть; Python ≥ 3.10)
 make all       # catalog → fetch-files → fetch-db → tnved → build → docs  (~40–60 минут, в основном загрузка)
 ```
 
-Или по шагам:
+Все цели `make` автоматически используют `.venv/bin/python`, если окружение создано (системный
+`pip install` в Homebrew/Debian-Python запрещён, PEP 668). Другой интерпретатор: `make build PY=python3`.
+
+Или по шагам (в активированном окружении: `source .venv/bin/activate`):
 
 ```bash
 python -m armstat_trade catalog       # страницы раздела на en/hy/ru → data/catalog/*.json
@@ -33,7 +36,7 @@ python -m armstat_trade build         # → data/armstat_trade.duckdb
 python -m armstat_trade docs          # → docs/data_dictionary.md, docs/inventory.md
 ```
 
-Распаковка 7z требует `7zz`/`7z` (например, `brew install sevenzip`) или пакета `py7zr` (`pip install '.[7z]'`).
+Распаковка 7z требует `7zz`/`7z` (например, `brew install sevenzip`) или пакета `py7zr` (`.venv/bin/python -m pip install '.[7z]'` либо `uv pip install --python .venv/bin/python '.[7z]'`).
 Повторный запуск `fetch-db` докачивает только отсутствующее и всегда обновляет два последних года
 (`--refresh-last N`), а также перепроверяет уже скачанные выгрузки и перезапрашивает некорректные.
 
@@ -93,7 +96,7 @@ duckdb data/armstat_trade.duckdb -c "
 | [docs/data_dictionary.md](docs/data_dictionary.md) | все таблицы и колонки (генерируется) |
 | [docs/inventory.md](docs/inventory.md) | перечень файлов и запросов (генерируется) |
 | [docs/data_quality.md](docs/data_quality.md) | проверки качества и найденные проблемы источников |
-| [docs/examples.ipynb](docs/examples.ipynb) | тетрадка Jupyter: примеры запросов, сравнений источников и визуализаций (`pip install -e '.[notebook]'`, `make notebook`) |
+| [docs/examples.ipynb](docs/examples.ipynb) | тетрадка Jupyter: примеры запросов, сравнений источников и визуализаций (`make install`, затем `make notebook` или `.venv/bin/jupyter lab docs/examples.ipynb`) |
 | [docs/maintenance.md](docs/maintenance.md) | сопровождение: обновление, новые годы, изменения на сайте |
 
 ## Основные таблицы
